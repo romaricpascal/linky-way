@@ -7,8 +7,11 @@ module.exports = {
   "overrides": [
     {
       "files": [
-        "**/__tests__/**/*"
+        "**/*--test.js"
       ],
+      env: {
+        mocha: true
+      },
       rules: {
         // Tests will require dev only packages
         "node/no-unpublished-require": 0,
