@@ -8,6 +8,9 @@
   },
   "scripts": {
     "lint": "eslint '**/*.js'",
+    "dev:server": "nodemon",
+    "dev:proxy": "browser-sync start -p localhost:8080",
+    "dev": "run-p dev:*",
     "test": "nyc --reporter=text ava",
     "docs": "(cd src && npx docco -o ../docs index.js)",
     "docs:watch": "chokidar src/index.js -c 'npm run docs'",
