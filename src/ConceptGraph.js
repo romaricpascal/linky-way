@@ -99,6 +99,7 @@ class ConceptGraph {
       ...node,
       children: [],
       parents: [],
+      entries: [],
     };
     this._nodes.push(createdNode);
     if (isSource) {
