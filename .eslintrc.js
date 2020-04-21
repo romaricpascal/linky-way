@@ -7,7 +7,8 @@ module.exports = {
   "overrides": [
     {
       "files": [
-        "**/*--test.js"
+        // Not just test files, also test helpers
+        "**/__tests__/**/*.js"
       ],
       env: {
         mocha: true
