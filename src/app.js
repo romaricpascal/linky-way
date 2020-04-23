@@ -11,8 +11,16 @@ const { Liquid } = require('liquidjs');
 
 const TEMPLATE_ENGINE_EXTENSION = 'liquid';
 
-exports.app = function () {
+exports.app = function (store) {
   const app = express();
+
+  // Inject the store on the request
+  // so other functions can use it
+  app.use(function (req, res, next) {
+    req.store = store;
+    next();
+  });
+
   const engine = new Liquid({
     extname: `.${TEMPLATE_ENGINE_EXTENSION}`,
     root: [resolve(__dirname, './templates'), '.'],

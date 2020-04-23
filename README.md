@@ -6,8 +6,8 @@ Journey through the Linky Way, a galaxy of concepts and links/notes attached to 
 TODO
 ---
 
-- [ ] Implement in memory storage for the graph of concepts and entries
-- [ ] Load entries from a CSV file
+- [x] Implement in memory storage for the graph of concepts and entries
+- [x] Load entries from a CSV file
 - [ ] Public front-end (possibly SSG)
   - [ ] concepts as a list
   - [ ] individual concept pages
