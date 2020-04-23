@@ -2,7 +2,7 @@ const { expect } = require('chai');
 
 const { Store } = require('../Store');
 
-describe.only('Store', () => {
+describe('Store', () => {
   describe('add()', () => {
     it('Adds a unique entry to the list of entries', () => {
       const store = new Store();
