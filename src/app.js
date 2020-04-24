@@ -7,25 +7,33 @@ const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
 const morgan = require('morgan');
-const { Liquid } = require('liquidjs');
 
-const TEMPLATE_ENGINE_EXTENSION = 'liquid';
+const TEMPLATE_ENGINE_EXTENSION = 'pug';
+const TEMPLATES_ROOT = 'templates';
 
 exports.app = function (store) {
   const app = express();
 
-  // Inject the store on the request
-  // so other functions can use it
-  app.use(function (req, res, next) {
-    req.store = store;
+  app.use(function configurePug(req, res, next) {
+    res.locals.basedir = resolve(__dirname, TEMPLATES_ROOT);
+    res.locals.plugins = [
+      {
+        resolve(filename) {
+          return resolve(__dirname, TEMPLATES_ROOT, filename);
+        },
+      },
+    ];
     next();
   });
 
-  const engine = new Liquid({
-    extname: `.${TEMPLATE_ENGINE_EXTENSION}`,
-    root: [resolve(__dirname, './templates'), '.'],
+  // Inject the store on the request
+  // and response so other functions can use it
+  app.use(function (req, res, next) {
+    req.store = store;
+    res.locals.store = store;
+    next();
   });
-  app.engine(TEMPLATE_ENGINE_EXTENSION, engine.express());
+
   app.set('view engine', TEMPLATE_ENGINE_EXTENSION);
 
   // Add HTTP request logging

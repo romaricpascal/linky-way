@@ -1,5 +1,5 @@
 {
-  "ext": "js,liquid",
+  "ext": "js,pug",
   "events": {
     "restart": "curl http://localhost:3000/__browser_sync__?method=reload &> /dev/null && echo 'Restarted browser-sync' || echo 'Failed to restart broswer-sync'"
   }
